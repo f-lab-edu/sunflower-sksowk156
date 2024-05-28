@@ -1,4 +1,4 @@
-package com.sjh.sunflower_sksowk156.ui.theme
+package com.sjh.sunflower_sksowk156.core.designsystem.theme
 
 import android.app.Activity
 import android.os.Build
