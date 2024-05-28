@@ -1,4 +1,4 @@
-# Sunflower Android app
+# Contact book Android app
 ## App configuration
 - Gradle 8.3.2
 - Java 17
