@@ -1,6 +1,7 @@
 package com.sjh.sunflower_sksowk156.feature.plantlist
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
@@ -12,8 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun PlantList() {
-    LazyColumn {
+fun PlantListScreen(modifier: Modifier) {
+    LazyColumn(modifier= modifier.fillMaxSize()) {
         items(25) { index ->
             NumberHolder(number = index)
         }
