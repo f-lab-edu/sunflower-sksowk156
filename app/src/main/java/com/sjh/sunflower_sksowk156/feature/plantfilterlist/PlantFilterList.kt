@@ -1,4 +1,4 @@
-package com.sjh.sunflower_sksowk156.feature.plantdetaillist
+package com.sjh.sunflower_sksowk156.feature.plantfilterlist
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun PlantDetailListScreen(modifier: Modifier) {
+fun PlantFilterListScreen(modifier: Modifier) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(25) { index ->
             Box {
