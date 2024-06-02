@@ -35,38 +35,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sjh.sunflower_sksowk156.R
-import com.sjh.sunflower_sksowk156.core.designsystem.theme.Sunflowersksowk156Theme
+import com.sjh.sunflower_sksowk156.core.model.Plant
 import com.sjh.sunflower_sksowk156.feature.mygarden.MyGardenScreen
-import com.sjh.sunflower_sksowk156.feature.plantfilterlist.PlantFilterListScreen
 import com.sjh.sunflower_sksowk156.feature.plantlist.PlantListScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(modifier: Modifier, onPlantItemClick: (String)->Unit) {
-    val tabs = listOf("My garden", "MyPlant list")
-    val pagerState = rememberPagerState(pageCount = { tabs.size })
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
+    val tabTitles = listOf("My garden", "Plant list")
+    val pagerState = rememberPagerState(pageCount = { tabTitles.size })
+    val topBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val coroutineScope = rememberCoroutineScope()
-    var isPlantDetailList by remember { mutableStateOf(false) }
+    var isPlantFilterListScreen by remember { mutableStateOf(false) }
 
     Scaffold(modifier = modifier
         .fillMaxSize()
-        .nestedScroll(scrollBehavior.nestedScrollConnection),
+        .nestedScroll(topBarScrollBehavior.nestedScrollConnection),
         topBar = {
             TopAppBar(
                 title = {
                     MainToolbar(modifier = modifier,
                         currentPage = pagerState.currentPage,
                         onPlantToolbarMenuClick = {
-                            isPlantDetailList = !isPlantDetailList
+                            isPlantFilterListScreen = !isPlantFilterListScreen
                         })
-                }, scrollBehavior = scrollBehavior
+                }, scrollBehavior = topBarScrollBehavior
             )
         }) { contentPadding ->
         Column(
@@ -78,7 +76,11 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String)->Unit) {
                 modifier = modifier.fillMaxWidth(),
                 selectedTabIndex = pagerState.currentPage,
             ) {
-                tabs.forEachIndexed { index, title ->
+                tabTitles.forEachIndexed { index, title ->
+                    val tabImageResource = when (index) {
+                        0 -> R.drawable.ic_my_garden_active
+                        else -> R.drawable.ic_plant_list_active
+                    }
                     Tab(
                         text = { Text(text = title) },
                         selected = pagerState.currentPage == index,
@@ -89,8 +91,9 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String)->Unit) {
                         },
                         icon = {
                             Image(
-                                painter = painterResource(if (index == 0) R.drawable.ic_my_garden_active else R.drawable.ic_my_garden_active),
-                                contentDescription = null
+                                painter = painterResource(tabImageResource),
+                                contentDescription = null,
+                                colorFilter = ColorFilter.tint(Color.Black),
                             )
                         },
                         unselectedContentColor = MaterialTheme.colorScheme.secondary
@@ -102,13 +105,7 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String)->Unit) {
             ) { page ->
                 when (page) {
                     0 -> MyGardenScreen(modifier, onItemClick = onPlantItemClick)
-                    1 -> {
-                        if (isPlantDetailList) {
-                            PlantFilterListScreen(modifier, onItemClick = onPlantItemClick)
-                        } else {
-                            PlantListScreen(modifier, onItemClick = onPlantItemClick)
-                        }
-                    }
+                    1 -> PlantListScreen(modifier, onItemClick = onPlantItemClick, getPlantData(isPlantFilterListScreen))
                 }
             }
         }
@@ -159,10 +156,22 @@ fun MyGardenToolbar(modifier: Modifier) {
     }
 }
 
-@Preview
-@Composable
-fun MyAppPreview() {
-    Sunflowersksowk156Theme {
-//        MainScreen(Modifier)
+// Todo : ViewMdoel에서 처리
+fun getPlantData(isFilter: Boolean): List<Plant> {
+    if (isFilter) {
+        return listOf<Plant>(
+            Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2),
+            Plant(plantId = "3", name = "abs3", description = "df3", growZoneNumber = 3),
+            Plant(plantId = "5", name = "abs5", description = "df5", growZoneNumber = 5),
+        )
+    } else {
+        return listOf<Plant>(
+            Plant(plantId = "1", name = "abs1", description = "df1", growZoneNumber = 1),
+            Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2),
+            Plant(plantId = "3", name = "abs3", description = "df3", growZoneNumber = 3),
+            Plant(plantId = "4", name = "abs4", description = "df4", growZoneNumber = 4),
+            Plant(plantId = "5", name = "abs5", description = "df5", growZoneNumber = 5),
+            Plant(plantId = "6", name = "abs6", description = "df6", growZoneNumber = 6),
+        )
     }
 }

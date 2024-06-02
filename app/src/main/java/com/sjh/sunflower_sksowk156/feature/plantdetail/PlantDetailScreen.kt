@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.sjh.sunflower_sksowk156.R
 
 @Composable
-fun PlantDetailScreen(modifier: Modifier, plantId: Int, onBackClick: () -> Unit) {
+fun PlantDetailScreen(modifier: Modifier, plantId: String, onBackClick: () -> Unit) {
     Box {
         Column(
             modifier = modifier.fillMaxSize(),

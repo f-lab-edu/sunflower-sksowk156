@@ -2,12 +2,14 @@ package com.sjh.sunflower_sksowk156.feature
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.sjh.sunflower_sksowk156.core.designsystem.theme.Sunflowersksowk156Theme
 import com.sjh.sunflower_sksowk156.feature.main.MainScreen
 import com.sjh.sunflower_sksowk156.feature.plantdetail.PlantDetailScreen
 
@@ -34,9 +36,9 @@ fun SunFlowerNavHost(
         }
         composable(
             route = "plantdetail/{plantId}",
-            arguments = listOf(navArgument("plantId") { type = NavType.IntType })
+            arguments = listOf(navArgument("plantId") { type = NavType.StringType })
         ) { backStackEntry ->
-            val plantId = backStackEntry.arguments?.getInt("plantId")
+            val plantId = backStackEntry.arguments?.getString("plantId")
             plantId?.let {
                 PlantDetailScreen(
                     modifier = Modifier,
@@ -45,5 +47,13 @@ fun SunFlowerNavHost(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun MyAppPreview() {
+    Sunflowersksowk156Theme {
+        SunflowerApp()
     }
 }
