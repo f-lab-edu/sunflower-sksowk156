@@ -10,7 +10,7 @@ import com.sjh.sunflower_sksowk156.core.model.Plant
 import com.sjh.sunflower_sksowk156.core.ui.PlantListItem
 
 @Composable
-fun PlantListScreen(modifier: Modifier) {
+fun PlantListScreen(modifier: Modifier, onItemClick: (String) -> Unit) {
     val data = listOf<Plant>(
         Plant(plantId = "1", name = "abs1", description = "df1", growZoneNumber = 1),
         Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2),
@@ -21,7 +21,7 @@ fun PlantListScreen(modifier: Modifier) {
     )
     LazyVerticalGrid(modifier = modifier.fillMaxSize(), columns = GridCells.Fixed(2)) {
         items(data) {
-            PlantListItem(data = it, modifier = modifier)
+            PlantListItem(data = it, modifier = modifier, onClick = { onItemClick(it.plantId) })
         }
     }
 }

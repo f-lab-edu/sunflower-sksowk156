@@ -20,12 +20,13 @@ import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.Plant
 
 @Composable
-fun PlantListItem(data: Plant, modifier: Modifier) {
+fun PlantListItem(data: Plant, modifier: Modifier, onClick : () -> Unit) {
     Card(
         modifier = modifier.padding(
             bottom = 26.dp, start = 12.dp, end = 12.dp, top = 12.dp
         ),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        onClick = onClick
     ) {
         // Box는 카드 내부의 컨텐츠를 담는 컨테이너입니다.
         Box {
