@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(modifier: Modifier) {
-    val tabs = listOf("My garden", "Plant list")
+    val tabs = listOf("My garden", "MyPlant list")
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val coroutineScope = rememberCoroutineScope()

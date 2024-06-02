@@ -1,35 +1,27 @@
 package com.sjh.sunflower_sksowk156.feature.plantlist
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import com.sjh.sunflower_sksowk156.core.model.Plant
+import com.sjh.sunflower_sksowk156.core.ui.PlantListItem
 
 @Composable
 fun PlantListScreen(modifier: Modifier) {
-    LazyColumn(modifier= modifier.fillMaxSize()) {
-        items(25) { index ->
-            NumberHolder(number = index)
+    val data = listOf<Plant>(
+        Plant(plantId = "1", name = "abs1", description = "df1", growZoneNumber = 1),
+        Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2),
+        Plant(plantId = "3", name = "abs3", description = "df3", growZoneNumber = 3),
+        Plant(plantId = "4", name = "abs4", description = "df4", growZoneNumber = 4),
+        Plant(plantId = "5", name = "abs5", description = "df5", growZoneNumber = 5),
+        Plant(plantId = "6", name = "abs6", description = "df6", growZoneNumber = 6),
+    )
+    LazyVerticalGrid(modifier = modifier.fillMaxSize(), columns = GridCells.Fixed(2)) {
+        items(data) {
+            PlantListItem(data = it, modifier = modifier)
         }
-    }
-}
-
-@Composable
-fun NumberHolder(number: Int) {
-    Row(
-        modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = number.toString(), style = TextStyle(
-                fontSize = 40.sp, fontWeight = FontWeight.Bold
-            )
-        )
     }
 }
