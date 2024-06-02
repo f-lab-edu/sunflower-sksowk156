@@ -47,8 +47,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
-    val tabTitles = listOf("My garden", "Plant list")
-    val pagerState = rememberPagerState(pageCount = { tabTitles.size })
+    val pagerState = rememberPagerState(pageCount = { 2 })
     val topBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val coroutineScope = rememberCoroutineScope()
     var isPlantFilterListScreen by remember { mutableStateOf(false) }
@@ -76,10 +75,10 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
                 modifier = modifier.fillMaxWidth(),
                 selectedTabIndex = pagerState.currentPage,
             ) {
-                tabTitles.forEachIndexed { index, title ->
-                    val tabImageResource = when (index) {
-                        0 -> R.drawable.ic_my_garden_active
-                        else -> R.drawable.ic_plant_list_active
+                for (index in 0 until pagerState.pageCount) {
+                    val (title, tabImageResource) = when (index) {
+                        0 -> Pair("My garden", R.drawable.ic_my_garden_active)
+                        else -> Pair("Plant list", R.drawable.ic_plant_list_active)
                     }
                     Tab(
                         text = { Text(text = title) },
