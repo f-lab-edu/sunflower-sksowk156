@@ -25,14 +25,10 @@ fun NavGraphBuilder.plantDetailScreen(
         arguments = listOf(navArgument(PLANT_ID) {
             type = NavType.StringType
         })
-    ) { backStackEntry ->
-        val plantId = backStackEntry.arguments?.getString(PLANT_ID)
-        plantId?.let {
-            PlantDetailScreen(
-                modifier = modifier,
-                plantId = plantId,
-                onBackClick = onBackClick,
-            )
-        }
+    ) {
+        PlantDetailScreen(
+            modifier = modifier,
+            onBackClick = onBackClick,
+        )
     }
 }
