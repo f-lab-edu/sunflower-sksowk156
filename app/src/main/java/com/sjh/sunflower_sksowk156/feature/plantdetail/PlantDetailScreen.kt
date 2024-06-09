@@ -35,7 +35,7 @@ import com.sjh.sunflower_sksowk156.core.designsystem.theme.Sunflowersksowk156The
 fun PlantDetailScreen(
     modifier: Modifier, onBackClick: () -> Unit,
     viewModel: PlantDetailViewModel = viewModel(
-        factory = PlantDetailViewModelFactory()
+        factory = PlantDetailViewModel.Factory
     ),
 ) {
     val plantId = viewModel.selectedPlantId

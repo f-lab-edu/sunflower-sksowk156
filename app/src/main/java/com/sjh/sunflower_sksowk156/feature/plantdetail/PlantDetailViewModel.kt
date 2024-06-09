@@ -9,16 +9,18 @@ import com.sjh.sunflower_sksowk156.feature.plantdetail.navigation.PLANT_ID
 
 class PlantDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     val selectedPlantId = savedStateHandle.get<String>(PLANT_ID)
-}
 
-class PlantDetailViewModelFactory : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-        if (modelClass.isAssignableFrom(PlantDetailViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return PlantDetailViewModel(
-                extras.createSavedStateHandle(),
-            ) as T
+    companion object {
+        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+                if (modelClass.isAssignableFrom(PlantDetailViewModel::class.java)) {
+                    @Suppress("UNCHECKED_CAST")
+                    return PlantDetailViewModel(
+                        extras.createSavedStateHandle(),
+                    ) as T
+                }
+                throw IllegalArgumentException("Unknown ViewModel class")
+            }
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

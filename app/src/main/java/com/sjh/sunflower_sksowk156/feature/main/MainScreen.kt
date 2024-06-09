@@ -77,8 +77,8 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
             ) {
                 for (index in 0 until pagerState.pageCount) {
                     val (title, tabImageResource) = when (index) {
-                        0 -> Pair("My garden", R.drawable.ic_my_garden_active)
-                        else -> Pair("Plant list", R.drawable.ic_plant_list_active)
+                        0 -> "My garden" to R.drawable.ic_my_garden_active
+                        else -> "Plant list" to R.drawable.ic_plant_list_active
                     }
                     Tab(
                         text = { Text(text = title) },
