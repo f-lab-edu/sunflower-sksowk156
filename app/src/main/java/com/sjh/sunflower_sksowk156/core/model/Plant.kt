@@ -1,5 +1,6 @@
 package com.sjh.sunflower_sksowk156.core.model
 
+
 data class Plant(
     val plantId: String,
     val name: String,

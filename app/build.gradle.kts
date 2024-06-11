@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -45,12 +46,15 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/INDEX.LIST"
+            excludes += "META-INF/io.netty.versions.properties"
         }
     }
 }
 
 dependencies {
-
+    implementation("org.nanohttpd:nanohttpd:2.3.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1" )
     // ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
@@ -59,6 +63,10 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.server.core)
+    implementation(libs.ktor.server.netty)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.server.status.pages)
 
     // orbit
     implementation(libs.orbit.core)

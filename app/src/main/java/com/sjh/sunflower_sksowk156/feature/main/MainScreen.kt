@@ -37,6 +37,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.Plant
 import com.sjh.sunflower_sksowk156.feature.mygarden.MyGardenScreen
@@ -46,7 +47,13 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
+fun MainScreen(
+    modifier: Modifier,
+    onPlantItemClick: (String) -> Unit,
+    viewModel: MainViewModel = viewModel(
+        factory = MainViewModel.Factory
+    )
+) {
     val pagerState = rememberPagerState(pageCount = { 2 })
     val topBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val coroutineScope = rememberCoroutineScope()
@@ -104,7 +111,11 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
             ) { page ->
                 when (page) {
                     0 -> MyGardenScreen(modifier, onItemClick = onPlantItemClick)
-                    1 -> PlantListScreen(modifier, onItemClick = onPlantItemClick, getPlantData(isPlantFilterListScreen))
+                    1 -> PlantListScreen(
+                        modifier,
+                        onItemClick = onPlantItemClick,
+                        getPlantData(isPlantFilterListScreen)
+                    )
                 }
             }
         }
