@@ -7,6 +7,7 @@ import fi.iki.elonen.NanoHTTPD
 
 class SunflowerApplication : Application() {
     var server: TempServer? = null
+        private set
 
     override fun onCreate() {
         super.onCreate()
@@ -18,8 +19,8 @@ class SunflowerApplication : Application() {
     class TempServer(private val context: Context) : NanoHTTPD(8081) {
         override fun serve(session: IHTTPSession?): Response {
             return try {
-                val response =
-                    context.assets.open("plants.json").bufferedReader().use { it.readText() }
+                val reader = context.assets.open("plants.json").bufferedReader()
+                val response = reader.readText()
                 newFixedLengthResponse(Response.Status.OK, "application/json", response)
             } catch (e: Exception) {
                 Log.e("WEB_SERVER", "Error serving request: ${e.message}")

@@ -33,7 +33,7 @@ import com.sjh.sunflower_sksowk156.core.designsystem.theme.Sunflowersksowk156The
 
 @Composable
 fun PlantDetailScreen(
-    modifier: Modifier, onBackClick: () -> Unit,
+    modifier: Modifier, onClickBack: () -> Unit,
     viewModel: PlantDetailViewModel = viewModel(
         factory = PlantDetailViewModel.Factory
     ),
@@ -48,7 +48,7 @@ fun PlantDetailScreen(
                 .padding(start = 10.dp, top = 20.dp)
                 .statusBarsPadding()
                 .clickable {
-                    onBackClick()
+                    onClickBack()
                 },
             painter = painterResource(id = com.google.android.material.R.drawable.ic_arrow_back_black_24),
             contentDescription = null,

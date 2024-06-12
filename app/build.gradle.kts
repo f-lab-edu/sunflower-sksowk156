@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -53,8 +53,9 @@ android {
 }
 
 dependencies {
-    implementation("org.nanohttpd:nanohttpd:2.3.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1" )
+    // server
+    implementation(libs.nanohttpd)
+
     // ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
@@ -89,6 +90,10 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
 
+    // kotlin serialization
+    implementation (libs.kotlinx.serialization.json )
+
+    // ktx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 

@@ -18,7 +18,7 @@ fun NavController.navigateToPlantDetail(plantId: String) {
 
 fun NavGraphBuilder.plantDetailScreen(
     modifier: Modifier,
-    onBackClick: () -> Unit,
+    onClickBack: () -> Unit,
 ) {
     composable(
         route = PLANTDETAIL_ROUTE_WITH_ARG,
@@ -28,7 +28,7 @@ fun NavGraphBuilder.plantDetailScreen(
     ) {
         PlantDetailScreen(
             modifier = modifier,
-            onBackClick = onBackClick,
+            onClickBack = onClickBack,
         )
     }
 }

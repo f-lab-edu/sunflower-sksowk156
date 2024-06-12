@@ -22,10 +22,10 @@ import androidx.compose.ui.unit.dp
 import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.MyPlant
 import com.sjh.sunflower_sksowk156.core.model.Plant
-import com.sjh.sunflower_sksowk156.core.network.model.PlantSource
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 
 @Composable
-fun MyGardenScreen(modifier: Modifier, onItemClick : (String) -> Unit) {
+fun MyGardenScreen(modifier: Modifier, onItemClick : (plantId : String) -> Unit) {
     val data = listOf<MyPlant>(
         MyPlant(plantDate = "asd", plant = Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2)),
         MyPlant(plantDate = "ewf", plant = Plant(plantId = "3", name = "abs3", description = "df3", growZoneNumber = 3)),

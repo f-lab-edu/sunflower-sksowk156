@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun MainScreen(
     modifier: Modifier,
-    onPlantItemClick: (String) -> Unit,
+    onClickPlantItem: (plantId : String) -> Unit,
     viewModel: MainViewModel = viewModel(
         factory = MainViewModel.Factory
     )
@@ -80,12 +80,13 @@ fun MainScreen(
         ) {
             TabRow(
                 modifier = modifier.fillMaxWidth(),
-                selectedTabIndex = pagerState.currentPage,
+                selectedTabIndex = pagerState.currentPage ,
             ) {
                 for (index in 0 until pagerState.pageCount) {
                     val (title, tabImageResource) = when (index) {
                         0 -> "My garden" to R.drawable.ic_my_garden_active
-                        else -> "Plant list" to R.drawable.ic_plant_list_active
+                        1 -> "Plant list" to R.drawable.ic_plant_list_active
+                        else -> throw IllegalArgumentException("Invalid page index")
                     }
                     Tab(
                         text = { Text(text = title) },
@@ -110,10 +111,10 @@ fun MainScreen(
                 modifier = modifier.fillMaxHeight(), state = pagerState,
             ) { page ->
                 when (page) {
-                    0 -> MyGardenScreen(modifier, onItemClick = onPlantItemClick)
+                    0 -> MyGardenScreen(modifier, onItemClick = onClickPlantItem)
                     1 -> PlantListScreen(
                         modifier,
-                        onItemClick = onPlantItemClick,
+                        onItemClick = onClickPlantItem,
                         getPlantData(isPlantFilterListScreen)
                     )
                 }

@@ -1,6 +1,6 @@
 package com.sjh.sunflower_sksowk156.core.network.ktor
 
-import com.sjh.sunflower_sksowk156.core.network.model.PlantSource
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -22,6 +22,6 @@ class KtorNetwork(
         }
     }
 
-    override suspend fun getPlantsResource(): List<PlantSource> =
+    override suspend fun getPlantsResource(): List<NetworkPlant> =
         networkApi.get(URL).body()
 }

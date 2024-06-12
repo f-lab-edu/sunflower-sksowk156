@@ -4,7 +4,7 @@ import com.sjh.sunflower_sksowk156.core.model.Plant
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PlantSource(
+data class NetworkPlant(
     val plantId: String,
     val name: String,
     val description: String,
@@ -13,7 +13,7 @@ data class PlantSource(
     val imageUrl: String = "",
 )
 
-fun PlantSource.asExternalModel() = Plant(
+fun NetworkPlant.asExternalModel() = Plant(
     plantId = plantId,
     name = name,
     description = description,

@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.sjh.sunflower_sksowk156.core.designsystem.theme.Sunflowersksowk156Theme
 import com.sjh.sunflower_sksowk156.core.model.Plant
-import com.sjh.sunflower_sksowk156.core.network.model.PlantSource
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 import com.sjh.sunflower_sksowk156.feature.SunflowerApp
 import fi.iki.elonen.NanoHTTPD
 import io.ktor.client.HttpClient
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
 
         // 서버 중지
-        SunflowerApplication().server?.stop()
+        (applicationContext as SunflowerApplication).server?.stop()
     }
 
 }

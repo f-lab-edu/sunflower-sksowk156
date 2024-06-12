@@ -32,8 +32,8 @@ fun SunFlowerNavHost(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        mainScreen(modifier = modifier, onPlantItemClick = navController::navigateToPlantDetail)
-        plantDetailScreen(modifier = modifier, onBackClick = navController::popBackStack)
+        mainScreen(modifier = modifier, onClickPlantItem = navController::navigateToPlantDetail)
+        plantDetailScreen(modifier = modifier, onClickBack = navController::popBackStack)
     }
 }
 

@@ -7,14 +7,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 object DataFactory {
-    private fun createIODispatcher(): CoroutineDispatcher {
-        return Dispatchers.IO
-    }
 
     fun providePlantsRepository(): PlantsRepository {
         return PlantsRepositoryImpl(
             networkDataSource = NetworkFactory.provideNetworkDataSource(),
-            ioDispatcher = createIODispatcher()
         )
     }
 }

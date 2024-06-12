@@ -9,9 +9,9 @@ const val MAIN_ROUTE = "/main"
 
 fun NavGraphBuilder.mainScreen(
     modifier: Modifier,
-    onPlantItemClick: (String) -> Unit,
+    onClickPlantItem: (plantId : String) -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
-        MainScreen(modifier, onPlantItemClick)
+        MainScreen(modifier, onClickPlantItem)
     }
 }
