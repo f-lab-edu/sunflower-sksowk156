@@ -115,7 +115,6 @@ fun MainScreen(
                     1 -> PlantListScreen(
                         modifier,
                         onItemClick = onClickPlantItem,
-                        getPlantData(isPlantFilterListScreen)
                     )
                 }
             }

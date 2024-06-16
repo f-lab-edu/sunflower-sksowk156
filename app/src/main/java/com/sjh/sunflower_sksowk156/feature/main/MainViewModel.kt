@@ -8,6 +8,7 @@ import com.sjh.sunflower_sksowk156.core.data.repository.PlantsRepository
 
 class MainViewModel(private val plantsRepository: PlantsRepository) :
     ViewModel() {
+
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {

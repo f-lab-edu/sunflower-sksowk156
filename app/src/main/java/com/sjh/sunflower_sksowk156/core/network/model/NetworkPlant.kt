@@ -13,7 +13,7 @@ data class NetworkPlant(
     val imageUrl: String = "",
 )
 
-fun NetworkPlant.asExternalModel() = Plant(
+fun NetworkPlant.toExternalModel() = Plant(
     plantId = plantId,
     name = name,
     description = description,
