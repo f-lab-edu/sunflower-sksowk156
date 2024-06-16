@@ -1,7 +1,6 @@
 package com.sjh.sunflower_sksowk156.feature.mygarden
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,13 +22,14 @@ import androidx.compose.ui.unit.dp
 import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.MyPlant
 import com.sjh.sunflower_sksowk156.core.model.Plant
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 
 @Composable
-fun MyGardenScreen(modifier: Modifier, onItemClick : (String) -> Unit) {
+fun MyGardenScreen(modifier: Modifier, onItemClick : (plantId : String) -> Unit) {
     val data = listOf<MyPlant>(
         MyPlant(plantDate = "asd", plant = Plant(plantId = "2", name = "abs2", description = "df2", growZoneNumber = 2)),
         MyPlant(plantDate = "ewf", plant = Plant(plantId = "3", name = "abs3", description = "df3", growZoneNumber = 3)),
-        MyPlant(plantDate = "vv", plant =Plant(plantId = "4", name = "abs4", description = "df4", growZoneNumber = 4)),
+        MyPlant(plantDate = "vv", plant = Plant(plantId = "4", name = "abs4", description = "df4", growZoneNumber = 4)),
         MyPlant(plantDate = "ee", plant = Plant(plantId = "5", name = "abs5", description = "df5", growZoneNumber = 5))
     )
     LazyVerticalGrid (modifier=modifier.fillMaxSize(),columns = GridCells.Fixed(2)) {

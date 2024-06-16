@@ -37,6 +37,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.Plant
 import com.sjh.sunflower_sksowk156.feature.mygarden.MyGardenScreen
@@ -46,9 +47,14 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
-    val tabTitles = listOf("My garden", "Plant list")
-    val pagerState = rememberPagerState(pageCount = { tabTitles.size })
+fun MainScreen(
+    modifier: Modifier,
+    onClickPlantItem: (plantId : String) -> Unit,
+    viewModel: MainViewModel = viewModel(
+        factory = MainViewModel.Factory
+    )
+) {
+    val pagerState = rememberPagerState(pageCount = { 2 })
     val topBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val coroutineScope = rememberCoroutineScope()
     var isPlantFilterListScreen by remember { mutableStateOf(false) }
@@ -74,12 +80,13 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
         ) {
             TabRow(
                 modifier = modifier.fillMaxWidth(),
-                selectedTabIndex = pagerState.currentPage,
+                selectedTabIndex = pagerState.currentPage ,
             ) {
-                tabTitles.forEachIndexed { index, title ->
-                    val tabImageResource = when (index) {
-                        0 -> R.drawable.ic_my_garden_active
-                        else -> R.drawable.ic_plant_list_active
+                for (index in 0 until pagerState.pageCount) {
+                    val (title, tabImageResource) = when (index) {
+                        0 -> "My garden" to R.drawable.ic_my_garden_active
+                        1 -> "Plant list" to R.drawable.ic_plant_list_active
+                        else -> throw IllegalArgumentException("Invalid page index")
                     }
                     Tab(
                         text = { Text(text = title) },
@@ -104,8 +111,12 @@ fun MainScreen(modifier: Modifier, onPlantItemClick: (String) -> Unit) {
                 modifier = modifier.fillMaxHeight(), state = pagerState,
             ) { page ->
                 when (page) {
-                    0 -> MyGardenScreen(modifier, onItemClick = onPlantItemClick)
-                    1 -> PlantListScreen(modifier, onItemClick = onPlantItemClick, getPlantData(isPlantFilterListScreen))
+                    0 -> MyGardenScreen(modifier, onItemClick = onClickPlantItem)
+                    1 -> PlantListScreen(
+                        modifier,
+                        onItemClick = onClickPlantItem,
+                        getPlantData(isPlantFilterListScreen)
+                    )
                 }
             }
         }

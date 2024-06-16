@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.sjh.sunflower_sksowk156.core.model.Plant
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 import com.sjh.sunflower_sksowk156.core.ui.PlantListItem
 
 @Composable

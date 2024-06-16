@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.sjh.sunflower_sksowk156.R
 import com.sjh.sunflower_sksowk156.core.model.Plant
+import com.sjh.sunflower_sksowk156.core.network.model.NetworkPlant
 
 @Composable
 fun PlantListItem(data: Plant, modifier: Modifier, onClick : () -> Unit) {
