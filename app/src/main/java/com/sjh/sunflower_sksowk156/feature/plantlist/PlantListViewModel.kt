@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.sjh.sunflower_sksowk156.core.common.result.DataStatus
-import com.sjh.sunflower_sksowk156.core.common.result.asResult
+import com.sjh.sunflower_sksowk156.core.common.result.toDataStatus
 import com.sjh.sunflower_sksowk156.core.data.di.DataFactory
 import com.sjh.sunflower_sksowk156.core.data.repository.PlantsRepository
 import com.sjh.sunflower_sksowk156.core.model.Plant
@@ -31,7 +31,7 @@ class PlantListViewModel(private val plantsRepository: PlantsRepository) : ViewM
 
     @OptIn(OrbitExperimental::class)
     private suspend fun fetchPlantList() = subIntent {
-        plantsRepository.getPlantsResource().asResult().collect { dataStatus ->
+        plantsRepository.getPlantsResource().toDataStatus().collect { dataStatus ->
             reduce {
                 when (dataStatus) {
                     DataStatus.Loading -> PlantListScreenState.Loading

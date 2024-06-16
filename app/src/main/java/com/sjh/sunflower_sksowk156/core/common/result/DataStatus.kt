@@ -11,6 +11,6 @@ sealed interface DataStatus<out T> {
     data object Loading : DataStatus<Nothing>
 }
 
-fun <T> Flow<T>.asResult(): Flow<DataStatus<T>> =
+fun <T> Flow<T>.toDataStatus(): Flow<DataStatus<T>> =
     map<T, DataStatus<T>> { DataStatus.Success(it) }.onStart { emit(DataStatus.Loading) }
         .catch { emit(DataStatus.Error(it)) }
