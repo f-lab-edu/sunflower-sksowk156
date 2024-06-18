@@ -22,7 +22,7 @@ import com.sjh.sunflower_sksowk156.feature.plantlist.state.PlantListScreenState
 @Composable
 fun PlantListScreen(
     modifier: Modifier,
-    onItemClick: (String) -> Unit,
+    onItemClick: (plantName: String) -> Unit,
     viewModel: PlantListViewModel = viewModel(factory = PlantListViewModel.Factory),
 ) {
     val context = LocalContext.current
